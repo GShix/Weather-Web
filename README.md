@@ -1,2 +1,2 @@
-# Weather Web App
-Challenge 1: I am going to make a weather checking app 
+# Project 1: Weather Web App
+ I am going to make a weather checking app 
