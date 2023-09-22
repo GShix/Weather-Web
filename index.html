@@ -12,6 +12,9 @@
             <input type="text" placeholder="Enter City Name" spellcheck="false">
             <button><img src="search.png"></button>
         </div>
+        <div class="invalidCity">
+            <p>Invalid City Name</p>
+        </div>
         <div class="main">
             <img class="main-icon" src="rain.png" >
             <h1 class="temp">20°c</h1>
@@ -36,19 +39,61 @@
     </div>
     <script>
         // const apiKey="";
-        const apiUrl ="https://api.openweathermap.org/data/2.5/weather?q=Dang&appid=e2eaab2c7e4cd78bc44f5406bc714914&units=metric";
-        
-        async function checkWeather(){
-            const response= await fetch(apiUrl);
-            var data = await response.json();
-            console.log(data);
+        const apiUrl ="https://api.openweathermap.org/data/2.5/weather?appid=e2eaab2c7e4cd78bc44f5406bc714914&units=metric";
+        const searchBox = document.querySelector(".search input");
+        const searchBtn = document.querySelector(".search button");
+        const mainIcon = document.querySelector(".main-icon");
 
+        async function checkWeather(city){
+            const response= await fetch(`${apiUrl}&q=${city}` );
+
+            // Check Respone(City Name)
+            if(response.status == 404){
+                document.querySelector(".invalidCity").style.display="block";
+                document.querySelector(".main").style.display="none";
+            }
+            else{
+                var data = await response.json();
+            
+            // data fetching from API
             document.querySelector(".city").innerHTML = data.name;
             document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
             document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
             document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
+
+            // Images for different weather condition
+            if(data.weather[0].main == "Clouds"){
+                mainIcon.src = "clouds.png";
+        
+            }
+            else  if(data.weather[0].main == "Clear"){
+                mainIcon.src = "clear.png";
+        
+                
+            }
+            else  if(data.weather[0].main == "Rain"){
+                mainIcon.src = "rain.png";
+        
+            }
+            else  if(data.weather[0].main == "Drizzle"){
+                mainIcon.src = "drizzle.png";
+        
+            }
+            else  if(data.weather[0].main == "Mist"){
+                mainIcon.src = "mist.png";
+        
+            }
+            }
+            
+
+            // Displaying weather details after one input
+            document.querySelector(".main").style.display = "block";
+
         }
-        checkWeather();
+        searchBtn.addEventListener("click", ()=>{
+             checkWeather(searchBox.value);
+        })
+       
 
     </script>
 </body>
