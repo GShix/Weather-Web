@@ -15,7 +15,7 @@
         <div class="invalidCity">
             <p>Invalid City Name</p>
         </div>
-        <div class="main">
+        <div class="main-part">
             <img class="main-icon" src="rain.png" >
             <h1 class="temp">20°c</h1>
             <h2 class="city">Nepalgunj</h2>
@@ -49,8 +49,8 @@
 
             // Check Respone(City Name)
             if(response.status == 404){
+                document.querySelector(".main-part").style.display="none";
                 document.querySelector(".invalidCity").style.display="block";
-                document.querySelector(".main").style.display="none";
             }
             else{
                 var data = await response.json();
@@ -87,7 +87,7 @@
             
 
             // Displaying weather details after one input
-            document.querySelector(".main").style.display = "block";
+            document.querySelector(".main-part").style.display = "block";
 
         }
         searchBtn.addEventListener("click", ()=>{
