@@ -52,12 +52,12 @@ body{
     width: 200px;
     margin-top: 25px;
 }
-.main h1{
+.main-part h1{
     font-size: 80px;
     font-weight: 500;
 
 }
-.main h2{
+.main-part h2{
     font-size: 45px;
     font-weight: 400;
     margin-top: -5px;
@@ -83,7 +83,7 @@ body{
     font-size: 28px;
     margin-top: -6px;
 }
-.main{
+.main-part{
     display: none;
 }
 .invalidCity{
