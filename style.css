@@ -83,3 +83,14 @@ body{
     font-size: 28px;
     margin-top: -6px;
 }
+.main{
+    display: none;
+}
+.invalidCity{
+    text-align: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+    color:  rgb(206, 9, 9);
+    display: none;
+}
